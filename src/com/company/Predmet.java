@@ -19,11 +19,11 @@ public class Predmet {
         }
         studenti=Novi;
   }
-  public  void Izbrisi(Student stari){
+/*  public  void Izbrisi(Student stari){
       for (int i = 0; i < studenti.length; i++) {
           if(studenti[i].getIme()==stari.getIme()) studenti[i]=null;
       }
-  }
+  }*/
   public Predmet(String naziv, int sifra) {
      this.setNazivPredmeta(naziv);
      this.SifraPredmeta = sifra;
@@ -33,14 +33,16 @@ public class Predmet {
      this.setNazivPredmeta(naziv);
      NapraviNovi(podaci);
  }
-    public void upisi(Student student){
+    public  void upisi(Student student){
       if(studenti.length<MaksimalanBrojStudenata){
           NapraviNovi(student);
       }
       else System.out.println("Dostignut je maksimalan broj korisnika na predmetu!");
     }
-    public void ispisi(Student student){
-            Izbrisi(student);
+    public  void ispisi(Student student){
+        for (int i = 0; i < studenti.length; i++) {
+            if(studenti[i].getIme()==student.getIme()) studenti[i]=null;
+        }
     }
     public String getNazivPredmeta() {
         return NazivPredmeta;
