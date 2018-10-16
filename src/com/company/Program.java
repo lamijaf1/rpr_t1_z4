@@ -37,6 +37,7 @@ public class Program {
         }
     }
     public static void ListaPredmeta(){
+        predmeti=new Predmet[0];
         for (int i=0;i<predmeti.length;i++){
             System.out.println((i+1)+". "+predmeti[i].getNazivPredmeta()+" "+ predmeti[i].getSifraPredmeta());
         }
@@ -73,10 +74,13 @@ public class Program {
         for (int i = 0; i < predmeti.length; i++) {
             if (predmeti[i].getNazivPredmeta() == element.getNazivPredmeta()) rednibroj = i;
         }
-        if (rednibroj != -1) {
+        System.out.println(rednibroj);
+        if(rednibroj==0)predmeti=null;
+        else if (rednibroj != -1) {
             Predmet[] n = new Predmet[predmeti.length - 1];
             System.arraycopy(predmeti, 0, n, 0, rednibroj);
             System.arraycopy(predmeti, (rednibroj + 1), n, rednibroj, predmeti.length - rednibroj - 1);
+            predmeti=n;
         } else System.out.println("Ovaj element se ne nalazi u nizu studenata!");
     }
     public static void UnosStudenata(){
@@ -108,17 +112,17 @@ public class Program {
         }
     }
     public static void main(String[] args) {
-     UnosStudenata();
-     ListaStudenata();
-     UnosPredmeta();
-     ListaPredmeta();
-
-     // Student s=new Student;*/
-
-   //   Student s1= new Student("Lamija", "Fazlija", 17617);
-/*      System.out.println(studenti[1]);*/
-      removeElementStudent(studenti[1]);
+      UnosStudenata();
       ListaStudenata();
+      UnosPredmeta();
+      ListaPredmeta();
+      Student s1= new Student("Lamija", "Fazlija", 17617);
+      System.out.println(studenti[1]);
+      //UpisStudenta("Nurudina");
+      removeElementStudent(studenti[0]);
+      ListaStudenata();
+      removeElementPredmet(predmeti[0]);
+      ListaPredmeta();
         //  Student s2= new Student ("Pero", "Peric", 222);
 
 
