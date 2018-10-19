@@ -1,6 +1,5 @@
 package com.company;
-import java.util.Arrays;
-import java.util.Scanner;
+
 public class Predmet {
     private  Student[] studenti;
     private String NazivPredmeta;
@@ -9,62 +8,56 @@ public class Predmet {
 
   public  void NapraviNovi( Student novi) {
       Student[] Novi=new Student[0];
-        if (studenti.length <MaksimalanBrojStudenata ){
+        if (getStudenti().length <MaksimalanBrojStudenata ){
 
-            Novi = new Student[studenti.length + 1];
-            for (int i = 0; i < studenti.length; i++) {
-                Novi[i] = studenti[i];
+            Novi = new Student[getStudenti().length + 1];
+            for (int i = 0; i < getStudenti().length; i++) {
+                Novi[i] = getStudenti()[i];
             }
-            Novi[studenti.length] = novi;
+            Novi[getStudenti().length] = novi;
         }
-        studenti=Novi;
+        setStudenti(Novi);
   }
-/*  public  void Izbrisi(Student stari){
-      for (int i = 0; i < studenti.length; i++) {
-          if(studenti[i].getIme()==stari.getIme()) studenti[i]=null;
-      }
-  }*/
-  public Predmet(String naziv, int sifra) {
-     this.setNazivPredmeta(naziv);
-     this.SifraPredmeta = sifra;
 
- }
+    public Predmet(String ime, int sifra, int max_br) {
+        this.NazivPredmeta = ime;
+        this.SifraPredmeta = sifra;
+        this.MaksimalanBrojStudenata = max_br;
+        studenti=new Student[0];
+    }
   public Predmet(String naziv, Student podaci){
      this.setNazivPredmeta(naziv);
      NapraviNovi(podaci);
  }
-    public  void upisi(Student student){
-      if(studenti.length<MaksimalanBrojStudenata){
-          NapraviNovi(student);
-      }
-      else System.out.println("Dostignut je maksimalan broj korisnika na predmetu!");
+    public  void upisi(Student student) throws IllegalArgumentException{
+      if(studenti.length>MaksimalanBrojStudenata)throw new IllegalArgumentException (" Izlazak iz opsega");
+      NapraviNovi(student);
     }
     public  void ispisi(Student student){
-        for (int i = 0; i < studenti.length; i++) {
-            if(studenti[i].getIme()==student.getIme()) studenti[i]=null;
+        for (int i = 0; i < getStudenti().length; i++) {
+            if(getStudenti()[i].getIme()==student.getIme()) getStudenti()[i]=null;
         }
     }
     public String getNazivPredmeta() {
         return NazivPredmeta;
     }
 
-
     public int getSifraPredmeta() {
         return SifraPredmeta;
     }
 
-
     public void setSifraPredmeta(int sifraPredmeta) {
         SifraPredmeta = sifraPredmeta;
     }
-
     public  void setNazivPredmeta(String nazivPredmeta) {
         NazivPredmeta = nazivPredmeta;
     }
+    public int getMaksimalanBrojStudenata() {return MaksimalanBrojStudenata;}
+    public Student[] getStudenti() { return studenti; }
+    public void setStudenti(Student[] studenti) { this.studenti = studenti; }
+
     @Override
-    public String toString(){
-      return NazivPredmeta+SifraPredmeta;
-    }
+    public String toString(){ return NazivPredmeta+" " +SifraPredmeta;}
 
 
 }

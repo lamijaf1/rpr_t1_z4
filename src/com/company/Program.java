@@ -9,12 +9,13 @@ public class Program {
     private static Scanner ulaz = new Scanner(System.in);
     private static Student[] studenti;
     private static Predmet[] predmeti;
+
     public  static void DodajPredmet() {
         System.out.println("Unesite ime predmeta i sifru: ");
         String ime=ulaz.nextLine();
         int sifra=ulaz.nextInt();
         //ulaz.nextLine();
-        Predmet Novi=new Predmet(ime, sifra);
+        Predmet Novi=new Predmet(ime, sifra,10);
         Predmet[]  NoviNiz=new Predmet[predmeti.length+1];
         for (int i = 0; i < predmeti.length; i++) {
             NoviNiz[i] = predmeti[i];
@@ -39,7 +40,7 @@ public class Program {
     }
 
     public static void KreirajPredmet (String Ime, int sifra){
-        Predmet NoviPredmet= new Predmet(Ime,sifra);
+        Predmet NoviPredmet= new Predmet(Ime,sifra,10);
     }
     public static Student KreirajStudenta(String ImeStudenta, String PrezimeStudenta, int IndeksStudenta){
         Student NoviStudent=new Student(ImeStudenta,PrezimeStudenta,IndeksStudenta);
@@ -85,7 +86,7 @@ public class Program {
         int sifra=ulaz.nextInt();
         ulaz.nextLine();
 
-        Predmet element=new Predmet(ime, sifra);
+        Predmet element=new Predmet(ime, sifra, 10);
         int rednibroj = -1;
         for (int i = 0; i < predmeti.length; i++) {
             if (predmeti[i].getNazivPredmeta() == element.getNazivPredmeta() && predmeti[i].getSifraPredmeta()==element.getSifraPredmeta()) rednibroj = i;
@@ -124,7 +125,7 @@ public class Program {
             String imePredmeta = ulaz.nextLine();
             int sifra = ulaz.nextInt();
             ulaz.nextLine();
-            predmeti[i] = new Predmet(imePredmeta, sifra);
+            predmeti[i] = new Predmet(imePredmeta, sifra,10);
         }
     }
     public static void UpisiStudenta() {
@@ -161,9 +162,6 @@ public class Program {
             }
         }
     }
-
-
-
     public static void main(String[] args) {
     UnosStudenata();
     UnosPredmeta();
