@@ -1,13 +1,12 @@
 package com.company;
 
+
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class ProgramTest {
 
     @Test
     void dodajPredmet() {
+
     }
 
     @Test
@@ -44,6 +43,7 @@ class ProgramTest {
 
     @Test
     void unosStudenata() {
+        Student[] studenti=new Student[0];
     }
 
     @Test
@@ -56,5 +56,6 @@ class ProgramTest {
 
     @Test
     void ispisiStudenta() {
+
     }
 }

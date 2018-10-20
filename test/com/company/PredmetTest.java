@@ -1,7 +1,7 @@
 package com.company;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.fail;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PredmetTest {
@@ -56,6 +56,8 @@ class PredmetTest {
         assertThrows(IllegalArgumentException.class, () -> {
             p.upisi(s);
         });
+        p.setStudenti(null);
+        assertArrayEquals(null , p.getStudenti());
     }
     @Test
     void setStudentiTest() {

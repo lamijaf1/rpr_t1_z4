@@ -4,7 +4,7 @@ ispis studenta sa predmeta, brisanje studenta, brisanje predmeta, te ispis spisk
  */
 
 import java.util.Scanner;
-import java.util.InputMismatchException;
+
 public class Program {
     private static Scanner ulaz = new Scanner(System.in);
     private static Student[] studenti;
@@ -16,13 +16,13 @@ public class Program {
         int sifra=ulaz.nextInt();
         //ulaz.nextLine();
         Predmet Novi=new Predmet(ime, sifra,10);
-        Predmet[]  NoviNiz=new Predmet[predmeti.length+1];
-        for (int i = 0; i < predmeti.length; i++) {
-            NoviNiz[i] = predmeti[i];
+        Predmet[]  NoviNiz=new Predmet[getPredmeti().length+1];
+        for (int i = 0; i < getPredmeti().length; i++) {
+            NoviNiz[i] = getPredmeti()[i];
         }
-        NoviNiz[predmeti.length] = Novi;
+        NoviNiz[getPredmeti().length] = Novi;
 
-        predmeti=NoviNiz;
+        setPredmeti(NoviNiz);
     }
     public  static void DodajStudenta() {
         System.out.println("Unesite ime, prezime i indeks studenta: ");
@@ -31,12 +31,12 @@ public class Program {
         int indeks=ulaz.nextInt();
         //ulaz.nextLine();
         Student Novi=new Student(ime, prezime, indeks);
-        Student[]  NoviNiz=new Student[studenti.length+1];
-        for (int i = 0; i < studenti.length; i++) {
-            NoviNiz[i] = studenti[i];
+        Student[]  NoviNiz=new Student[getStudenti().length+1];
+        for (int i = 0; i < getStudenti().length; i++) {
+            NoviNiz[i] = getStudenti()[i];
         }
-        NoviNiz[studenti.length] = Novi;
-        studenti=NoviNiz;
+        NoviNiz[getStudenti().length] = Novi;
+        setStudenti(NoviNiz);
     }
 
     public static void KreirajPredmet (String Ime, int sifra){
@@ -51,14 +51,14 @@ public class Program {
         Predmet upisiStudenta=new Predmet(Naziv, student);
     }
     public static void ListaStudenata (){
-        for(int i=0;i<studenti.length;i++ ){
-            System.out.println((i+1)+". "+studenti[i].getPrezime()+" "+studenti[i].getIme()+" ("+studenti[i].getIndeks()+")");
+        for(int i = 0; i< getStudenti().length; i++ ){
+            System.out.println((i+1)+". "+ getStudenti()[i].getPrezime()+" "+ getStudenti()[i].getIme()+" ("+ getStudenti()[i].getIndeks()+")");
         }
     }
     public static void ListaPredmeta(){
-        predmeti=new Predmet[0];
-        for (int i=0;i<predmeti.length;i++){
-            System.out.println((i+1)+". "+predmeti[i].getNazivPredmeta()+" "+ predmeti[i].getSifraPredmeta());
+        setPredmeti(new Predmet[0]);
+        for (int i = 0; i< getPredmeti().length; i++){
+            System.out.println((i+1)+". "+ getPredmeti()[i].getNazivPredmeta()+" "+ getPredmeti()[i].getSifraPredmeta());
         }
     }
 
@@ -70,14 +70,14 @@ public class Program {
        ulaz.nextLine();
        Student element=new Student(ime, prezime, indeks);
        int rednibroj = -1;
-       for (int i = 0; i < studenti.length; i++) {
-           if (studenti[i].getIme() == element.getIme() && studenti[i].getPrezime()==element.getPrezime()&& studenti[i].getIndeks()==element.getIndeks()) rednibroj = i;
+       for (int i = 0; i < getStudenti().length; i++) {
+           if (getStudenti()[i].getIme() == element.getIme() && getStudenti()[i].getPrezime()==element.getPrezime()&& getStudenti()[i].getIndeks()==element.getIndeks()) rednibroj = i;
        }
        if (rednibroj != -1) {
-           Student[] n = new Student[studenti.length - 1];
-           System.arraycopy(studenti, 0, n, 0, rednibroj);
-           System.arraycopy(studenti, (rednibroj + 1), n, rednibroj, studenti.length - rednibroj - 1);
-           studenti=n;
+           Student[] n = new Student[getStudenti().length - 1];
+           System.arraycopy(getStudenti(), 0, n, 0, rednibroj);
+           System.arraycopy(getStudenti(), (rednibroj + 1), n, rednibroj, getStudenti().length - rednibroj - 1);
+           setStudenti(n);
        } else System.out.println("Ovaj element se ne nalazi u nizu studenata!");
    }
     public  static void removeElementPredmet( ){
@@ -88,23 +88,23 @@ public class Program {
 
         Predmet element=new Predmet(ime, sifra, 10);
         int rednibroj = -1;
-        for (int i = 0; i < predmeti.length; i++) {
-            if (predmeti[i].getNazivPredmeta() == element.getNazivPredmeta() && predmeti[i].getSifraPredmeta()==element.getSifraPredmeta()) rednibroj = i;
+        for (int i = 0; i < getPredmeti().length; i++) {
+            if (getPredmeti()[i].getNazivPredmeta() == element.getNazivPredmeta() && getPredmeti()[i].getSifraPredmeta()==element.getSifraPredmeta()) rednibroj = i;
         }
         //System.out.println(rednibroj);
-        if(rednibroj==0)predmeti=null;
+        if(rednibroj==0) setPredmeti(null);
         else if (rednibroj != -1) {
-            Predmet[] n = new Predmet[predmeti.length - 1];
-            System.arraycopy(predmeti, 0, n, 0, rednibroj);
-            System.arraycopy(predmeti, (rednibroj + 1), n, rednibroj, predmeti.length - rednibroj - 1);
-            predmeti=n;
+            Predmet[] n = new Predmet[getPredmeti().length - 1];
+            System.arraycopy(getPredmeti(), 0, n, 0, rednibroj);
+            System.arraycopy(getPredmeti(), (rednibroj + 1), n, rednibroj, getPredmeti().length - rednibroj - 1);
+            setPredmeti(n);
         } else System.out.println("Ovaj element se ne nalazi u nizu studenata!");
     }
     public static void UnosStudenata(){
        System.out.println("Unesite zeljeni broj studenata: ");
        int n=ulaz.nextInt();
        ulaz.nextLine();
-       studenti=new Student[n];
+       setStudenti(new Student[n]);
        //int in=0;
        for(int i=0;i<n;i++){
            System.out.println("Unesite ime, prezime i indeks studenta: ");
@@ -112,20 +112,20 @@ public class Program {
            String prez=ulaz.nextLine();
            int in = ulaz.nextInt();
            ulaz.nextLine();
-           studenti[i]=new Student(im,prez,in);
+           getStudenti()[i]=new Student(im,prez,in);
        }
     }
     public static void UnosPredmeta() {
         System.out.println("Unesite zeljeni broj predmeta: ");
         int n = ulaz.nextInt();
         ulaz.nextLine();
-        predmeti = new Predmet[n];
+        setPredmeti(new Predmet[n]);
         for (int i = 0; i < n; i++) {
             System.out.println("Unesite ime predmeta i sifru: ");
             String imePredmeta = ulaz.nextLine();
             int sifra = ulaz.nextInt();
             ulaz.nextLine();
-            predmeti[i] = new Predmet(imePredmeta, sifra,10);
+            getPredmeti()[i] = new Predmet(imePredmeta, sifra,10);
         }
     }
     public static void UpisiStudenta() {
@@ -138,9 +138,9 @@ public class Program {
         String ime = ulaz.nextLine();
         String prezime = ulaz.nextLine();
         Student novi = new Student(ime, prezime, indeks);
-        for (int i = 0; i < predmeti.length; i++) {
-            if (sifra == predmeti[i].getSifraPredmeta()) {
-                predmeti[i].upisi(novi);
+        for (int i = 0; i < getPredmeti().length; i++) {
+            if (sifra == getPredmeti()[i].getSifraPredmeta()) {
+                getPredmeti()[i].upisi(novi);
                 break;
             }
         }
@@ -155,9 +155,9 @@ public class Program {
         String ime = ulaz.nextLine();
         String prezime = ulaz.nextLine();
         Student novi = new Student(ime, prezime, indeks);
-        for (int i = 0; i < predmeti.length; i++) {
-            if (sifra == predmeti[i].getSifraPredmeta()) {
-                predmeti[i].ispisi(novi);
+        for (int i = 0; i < getPredmeti().length; i++) {
+            if (sifra == getPredmeti()[i].getSifraPredmeta()) {
+                getPredmeti()[i].ispisi(novi);
                 break;
             }
         }
@@ -203,6 +203,22 @@ public class Program {
                    UpisiStudenta();
            }
        }
+    }
+
+    public static Student[] getStudenti() {
+        return studenti;
+    }
+
+    public static void setStudenti(Student[] studenti) {
+        Program.studenti = studenti;
+    }
+
+    public  static Predmet[] getPredmeti() {
+        return predmeti;
+    }
+
+    public static void setPredmeti(Predmet[] predmeti) {
+        Program.predmeti = predmeti;
     }
 }
 //kreiranje novog predmeta, novog studenta, upis studenta na predmet,
