@@ -2,15 +2,19 @@ package com.company;
 
 
 import org.junit.jupiter.api.Test;
+
 class ProgramTest {
 
     @Test
     void dodajPredmet() {
 
+
     }
 
     @Test
-    void dodajStudenta() {
+    void dodajStudentaTest() {
+        Student s=new Student("lamija","Fazlija", 17617);
+
     }
 
     @Test
@@ -44,6 +48,8 @@ class ProgramTest {
     @Test
     void unosStudenata() {
         Student[] studenti=new Student[0];
+
+
     }
 
     @Test
@@ -56,6 +62,22 @@ class ProgramTest {
 
     @Test
     void ispisiStudenta() {
+
+    }
+
+    @Test
+    void getStudenti() {
+}
+    @Test
+    void setStudenti() {
+    }
+
+    @Test
+    void getPredmeti() {
+    }
+
+    @Test
+    void setPredmeti() {
 
     }
 }

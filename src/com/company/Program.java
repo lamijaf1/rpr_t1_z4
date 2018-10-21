@@ -9,7 +9,6 @@ public class Program {
     private static Scanner ulaz = new Scanner(System.in);
     private static Student[] studenti;
     private static Predmet[] predmeti;
-
     public  static void DodajPredmet() {
         System.out.println("Unesite ime predmeta i sifru: ");
         String ime=ulaz.nextLine();
@@ -24,25 +23,57 @@ public class Program {
 
         setPredmeti(NoviNiz);
     }
+    public static void DodajPredmet(Predmet p){
+        boolean ima = false;
+        for (int i = 0; i < predmeti.length; i++) if (predmeti[i].getSifraPredmeta() == p.getSifraPredmeta()) ima = true;
+        if(!ima) {
+            Predmet[] NoviNiz = new Predmet[predmeti.length + 1];
+            for (int i = 0; i < predmeti.length; i++) {
+                NoviNiz[i] = predmeti[i];
+            }
+            NoviNiz[predmeti.length] = p;
+            predmeti = NoviNiz;
+            System.out.println("OK");
+        }else System.out.println("Student vec postoji!");
+
+    }
+    public  static void DodajStudenta(Student s) {
+
+        boolean ima = false;
+        for (int i = 0; i < studenti.length; i++) if (studenti[i].getIndeks() == s.getIndeks()) ima = true;
+        if (!ima) {
+            Student[] NoviNiz = new Student[studenti.length + 1];
+            for (int i = 0; i < studenti.length; i++) {
+                NoviNiz[i] = studenti[i];
+            }
+            NoviNiz[studenti.length] = s;
+            studenti = NoviNiz;
+            System.out.println("OK");
+        } else System.out.println("Student vec postoji");
+    }
     public  static void DodajStudenta() {
         System.out.println("Unesite ime, prezime i indeks studenta: ");
-        String ime=ulaz.nextLine();
-        String prezime=ulaz.nextLine();
-        int indeks=ulaz.nextInt();
-        //ulaz.nextLine();
-        Student Novi=new Student(ime, prezime, indeks);
-        Student[]  NoviNiz=new Student[getStudenti().length+1];
-        for (int i = 0; i < getStudenti().length; i++) {
-            NoviNiz[i] = getStudenti()[i];
-        }
-        NoviNiz[getStudenti().length] = Novi;
-        setStudenti(NoviNiz);
+        String ime = ulaz.nextLine();
+        String prezime = ulaz.nextLine();
+        int indeks = ulaz.nextInt();
+        boolean ima = false;
+        for (int i = 0; i < studenti.length; i++) if (studenti[i].getIndeks() == indeks) ima = true;
+        if (!ima) {
+            Student Novi = new Student(ime, prezime, indeks);
+            Student[] NoviNiz = new Student[studenti.length + 1];
+            for (int i = 0; i < studenti.length; i++) {
+                NoviNiz[i] = studenti[i];
+            }
+            NoviNiz[studenti.length] = Novi;
+            studenti = NoviNiz;
+            System.out.println("OK");
+        } else System.out.println("Student vec postoji");
     }
 
     public static void KreirajPredmet (String Ime, int sifra){
         Predmet NoviPredmet= new Predmet(Ime,sifra,10);
     }
-    public static Student KreirajStudenta(String ImeStudenta, String PrezimeStudenta, int IndeksStudenta){
+    public  static Student KreirajStudenta(String ImeStudenta, String PrezimeStudenta, int IndeksStudenta){
         Student NoviStudent=new Student(ImeStudenta,PrezimeStudenta,IndeksStudenta);
         return NoviStudent;
     }
@@ -85,13 +116,11 @@ public class Program {
         String ime=ulaz.nextLine();
         int sifra=ulaz.nextInt();
         ulaz.nextLine();
-
         Predmet element=new Predmet(ime, sifra, 10);
         int rednibroj = -1;
         for (int i = 0; i < getPredmeti().length; i++) {
             if (getPredmeti()[i].getNazivPredmeta() == element.getNazivPredmeta() && getPredmeti()[i].getSifraPredmeta()==element.getSifraPredmeta()) rednibroj = i;
         }
-        //System.out.println(rednibroj);
         if(rednibroj==0) setPredmeti(null);
         else if (rednibroj != -1) {
             Predmet[] n = new Predmet[getPredmeti().length - 1];
@@ -105,7 +134,6 @@ public class Program {
        int n=ulaz.nextInt();
        ulaz.nextLine();
        setStudenti(new Student[n]);
-       //int in=0;
        for(int i=0;i<n;i++){
            System.out.println("Unesite ime, prezime i indeks studenta: ");
            String im=ulaz.nextLine();
@@ -221,5 +249,9 @@ public class Program {
         Program.predmeti = predmeti;
     }
 }
+
+
+
+
 //kreiranje novog predmeta, novog studenta, upis studenta na predmet,
 //ispis studenta sa predmeta, brisanje studenta, brisanje predmeta, te ispis spiska studenata na predmetu
