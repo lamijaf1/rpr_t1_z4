@@ -13,6 +13,10 @@ class PredmetTest {
             assertEquals("rpr 17617",p.toString());
     }
     @Test
+    void PredmetTest1(){
+        assertThrows(IllegalArgumentException.class, ()-> {new Predmet("rpr", -1,21);});
+    }
+    @Test
     void upisiTest() {
         Predmet p = new Predmet("RPR", 111,14);
         assertAll("predmet",

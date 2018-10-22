@@ -19,7 +19,8 @@ public class Predmet {
         setStudenti(Novi);
   }
 
-    public Predmet(String ime, int sifra, int max_br) {
+    public Predmet(String ime, int sifra, int max_br) throws IllegalArgumentException {
+      if(sifra<0)throw new IllegalArgumentException("greska");
         this.NazivPredmeta = ime;
         this.SifraPredmeta = sifra;
         this.MaksimalanBrojStudenata = max_br;
