@@ -3,10 +3,12 @@ package com.company;
 ispis studenta sa predmeta, brisanje studenta, brisanje predmeta, te ispis spiska studenata na predmetu.
  */
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Program {
-    private static Scanner ulaz = new Scanner(System.in);
+    public static Scanner ulaz = new Scanner(System.in);
+    public static PrintStream izlaz= System.out;
     private static Student[] studenti;
     private static Predmet[] predmeti;
     public  static void DodajPredmet() {
@@ -129,18 +131,19 @@ public class Program {
             setPredmeti(n);
         } else System.out.println("Ovaj element se ne nalazi u nizu studenata!");
     }
-    public static void UnosStudenata(){
-       System.out.println("Unesite zeljeni broj studenata: ");
+    public  static void UnosStudenata(PrintStream izlaz, Scanner ulaz){
+       izlaz.println("Unesite zeljeni broj studenata: ");
        int n=ulaz.nextInt();
        ulaz.nextLine();
        setStudenti(new Student[n]);
        for(int i=0;i<n;i++){
-           System.out.println("Unesite ime, prezime i indeks studenta: ");
+           izlaz.println("Unesite ime, prezime i indeks studenta: ");
            String im=ulaz.nextLine();
            String prez=ulaz.nextLine();
            int in = ulaz.nextInt();
            ulaz.nextLine();
            getStudenti()[i]=new Student(im,prez,in);
+
        }
     }
     public static void UnosPredmeta() {
@@ -191,7 +194,8 @@ public class Program {
         }
     }
     public static void main(String[] args) {
-    UnosStudenata();
+
+    UnosStudenata(izlaz, ulaz);
     UnosPredmeta();
     boolean x=true;
     while(x==true){

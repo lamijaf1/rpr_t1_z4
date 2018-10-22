@@ -1,13 +1,17 @@
 package com.company;
 
-
 import org.junit.jupiter.api.Test;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProgramTest {
 
     @Test
     void dodajPredmet() {
-
+    Predmet  p= new Predmet("Inzenjerska matematika", 111, 10);
 
     }
 
@@ -46,9 +50,9 @@ class ProgramTest {
     }
 
     @Test
-    void unosStudenata() {
-        Student[] studenti=new Student[0];
-
+    void UnosStudenata() {
+        Scanner ulaz = new Scanner(System.in);
+        PrintStream izlaz = System.out;
 
     }
 
@@ -66,14 +70,25 @@ class ProgramTest {
     }
 
     @Test
-    void getStudenti() {
+    void getStudentiTest() {
+        Predmet p = new Predmet("rpr", 001, 7);
+        Student s = new Student("Lamija", "Fazlija", 17617);
+        p.setStudenti(new Student[12]);
+        assertEquals(12 , p.getStudenti().length);
+        p.setStudenti(null);
+        assertEquals(null , p.getStudenti());
 }
     @Test
     void setStudenti() {
+        Predmet p = new Predmet("rpr", 001, 7);
+        Student[] s=new Student[2];
+        p.setStudenti(new Student[2]);
+        assertEquals(2, (p.getStudenti().length));
     }
 
     @Test
     void getPredmeti() {
+
     }
 
     @Test
